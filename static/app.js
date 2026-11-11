@@ -50,6 +50,7 @@ function placeSound(capture) {
 }
 
 function render() {
+  document.querySelector('#undo').disabled = !state.can_undo;
   const board = document.querySelector('#board');
   board.replaceChildren();
   for (let rank = 8; rank >= 1; rank--) {

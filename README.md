@@ -17,6 +17,9 @@ python -m pytest
 Start a game against another person or against the computer. Against the computer you
 play White; it looks one move ahead and plays the move that leaves it the most material,
 preferring checkmate. Select a piece, then a highlighted destination. White moves first.
+Undo restores the previous board, turn, and move list. Against the computer, it takes back
+both your move and the computer's reply when both have been played; if the computer has
+not replied yet, it takes back only your move. Undo at the start of a game does nothing.
 Standard movement, captures, check, checkmate and stalemate apply: you cannot leave your
 own king in check, checkmate wins, and stalemate is a draw. Pawns initially remain pawns at
 the far rank; a later branch adds promotion to a piece the player chooses. There is no clock.
