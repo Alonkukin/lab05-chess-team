@@ -80,6 +80,15 @@ class Session:
         self.notation.append(label)
         self.after_move()
 
+    def undo(self):
+        if not self.history:
+            return
+        # A completed computer turn consists of the player's move and its reply.
+        count = 2 if self.opponent == "computer" and len(self.history) % 2 == 0 else 1
+        for _ in range(count):
+            self.position = self.history.pop()
+            self.notation.pop()
+
     def save(self, path=DEFAULT_SAVE):
         data = {"version": SAVE_VERSION, "position": self.position,
                 "notation": self.notation, "opponent": self.opponent,
@@ -116,6 +125,7 @@ class Session:
             "board": self.position[0],
             "turn": self.position[1],
             "moves": self.notation,
+            "can_undo": bool(self.history),
             "opponent": self.opponent,
             "status": status(self.position),
             "winner": winner(self.position),
@@ -139,6 +149,8 @@ class Session:
             if not self.computer_to_move():
                 raise ValueError("It is not the computer's turn")
             self.play(*choose_move(self.position))
+        elif command == "undo":
+            self.undo()
         elif command == "legal":
             return {"targets": legal_moves(self.position, action.get("source"))}
         elif command == "new":
