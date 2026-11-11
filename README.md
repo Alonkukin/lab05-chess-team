@@ -34,9 +34,14 @@ plays the same moves.
 - `game.py`: board and turn in a position list; movement, check, checkmate and stalemate.
 - `session.py`: game actions, the opponent, displayed move notation, and sidebar information.
 - `computer.py`: the computer opponent.
-- `server.py`: one in-memory game, HTTP actions, and static files. Restarting loses the game.
+- `server.py`: one in-memory game, HTTP actions, and static files.
 - `static/`: browser presentation and square selection. All movement decisions run in Python.
 - `tests/`: starter behavior checks.
+
+Use **Save game** to write `game.save.json` beside the server, and **Load game** to
+restore it, including the board, turn, move list, opponent, and earlier positions.
+You can restart the server before loading. A missing or invalid save shows an error
+without changing the current game.
 
 ## Working together
 

@@ -145,7 +145,10 @@ document.querySelector('#controls').onclick = async event => {
   try {
     state = await request({action: button.dataset.action, opponent: button.dataset.opponent});
     selected = null; targets = [];
-    message.textContent = ''; render();
+    message.textContent = button.dataset.action === 'save' ? 'Game saved' :
+                          button.dataset.action === 'load' ? 'Game loaded' : '';
+    render();
+    if (button.dataset.action === 'load') await computerReply();
   } catch (error) { message.textContent = error.message; }
   finally { busy = false; }
 };

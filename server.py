@@ -50,7 +50,7 @@ def make_server(port=8000):
                 if not isinstance(action, dict):
                     raise ValueError("Expected an action object")
                 result = session.dispatch(action)
-            except (ValueError, TypeError) as error:
+            except (ValueError, TypeError, OSError) as error:
                 self.send_json(400, {"error": str(error)})
                 return
             self.send_json(200, result)
